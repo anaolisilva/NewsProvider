@@ -1,0 +1,17 @@
+{
+  "name": "jungledevs",
+  "version": "1.0.0",
+  "description": "Node challenge 001 - Jungle Devs",
+  "repository": "https://github.com/anaolisilva/NewsProvider",
+  "author": "Ana Oliveira Silva",
+  "license": "MIT",
+  "packageManager": "yarn@3.0.1",
+  "dependencies": {
+    "express": "^4.17.1",
+    "knex": "^0.95.10",
+    "pg": "^8.7.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12"
+  }
+}
