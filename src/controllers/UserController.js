@@ -5,8 +5,57 @@ module.exports = {
     const results = await knex('users');
     // Aguarda retorno da função knex
 
-    return res.json(results)
+    return res.json(results);
+  },
 
+  async singUp(req, res, next) {
+    
+    try {
+
+      const { username, password, admin } = req.body;
+
+      await knex('users').insert({ username, password, admin });
+
+      return res.status(201).send();
+
+    } catch(error) {
+
+      next(error);
+
+    }
+
+  },
+
+  async update (req, res, next) {
+    try {
+      const { username, password, admin } = req.body;
+
+      // Captura id da url da requisição
+      const { id } = req.params
+
+      
+      // Define o update comparando o id com o capturado, para fazer a inserção certa dos dados.
+      await knex('users').update({ username, password, admin }).where({ id : id});
+
+      return res.send();
+
+    }catch(error){
+      next(error);
+    }
+
+  },
+
+  async delete (req, res, next) {
+    try {
+      const { id } = req.params;
+
+      await knex('users').where({ id }).del();
+
+      return res.send();
+
+    } catch(error){
+      next(error);
+    }
   }
   
 }
