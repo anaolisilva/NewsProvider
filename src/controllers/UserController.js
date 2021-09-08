@@ -26,9 +26,11 @@ module.exports = {
     
     try {
 
-      const { username, password, admin } = req.body;
+      let newUser = req.body;
 
-      await knex('users').insert({ username, password, admin });
+      await User.query().insert(newUser);
+
+      // await knex('users').insert({ username, password, admin });
 
       return res.status(201).send();
 
@@ -42,16 +44,15 @@ module.exports = {
 
   async update (req, res, next) {
     try {
-      const { username, password, admin } = req.body;
+      let updateUser = req.body;
 
-      // Captura id da url da requisição
       const { id } = req.params
 
-      
-      // Define o update comparando o id com o capturado, para fazer a inserção certa dos dados.
-      await knex('users').update({ username, password, admin }).where({ id : id});
+      await User.query().findById(id).patch(updateUser);
 
-      return res.send();
+      updateUser = await User.query().findById(id);
+
+      return res.send(updateUser);
 
     }catch(error){
       next(error);
@@ -63,7 +64,7 @@ module.exports = {
     try {
       const { id } = req.params;
 
-      await knex('users').where({ id }).del();
+      await User.query().deleteById(id);
 
       return res.send();
 
