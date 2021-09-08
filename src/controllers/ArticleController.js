@@ -25,7 +25,7 @@ module.exports = {
 
         category = '%' + category + '%';
 
-        const result = await Article.query().findOne('category', 'LIKE', category);
+        const result = await Article.query().findOne('category', 'LIKE', category).withGraphFetched('author').select('articles.category', 'articles.title', 'articles.summary');
 
         return res.send(result);
 
