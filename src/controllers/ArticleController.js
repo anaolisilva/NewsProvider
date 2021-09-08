@@ -1,4 +1,3 @@
-const knex = require("../database");
 const Article = require('../models/Article');
 
 module.exports = {
@@ -28,7 +27,7 @@ module.exports = {
   },
 
 
-  async updateArtcile(req, res, next){
+  async updateArticle(req, res, next){
     try{
 
       let updateArticle = req.body;
