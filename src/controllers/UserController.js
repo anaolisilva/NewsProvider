@@ -1,4 +1,5 @@
 const knex = require("../database");
+const User = require('../models/User')
 
 module.exports = {
   async index(req, res) {
@@ -6,6 +7,19 @@ module.exports = {
     // Aguarda retorno da função knex
 
     return res.json(results);
+  },
+
+  async getById(req, res, next) {
+    try {
+      const { id } = req.params;
+      const user = await User.query().findById(id);
+      
+      return res.json(user); 
+
+    }catch(error) {
+
+      next(error);
+    }
   },
 
   async singUp(req, res, next) {

@@ -6,7 +6,7 @@ exports.seed = function(knex) {
       // Inserts seed entries
       return knex('articles').insert([
         {
-          author_id: '4',
+          author_id: '1',
           category: 'xxxxxx',
           title: 'Very good title',
           summary: 'very interesting article',
@@ -14,7 +14,7 @@ exports.seed = function(knex) {
           body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
         },
         {
-          author_id: '5',
+          author_id: '2',
           category: 'yyyyyy',
           title: 'Really good title',
           summary: 'wow',
@@ -22,7 +22,7 @@ exports.seed = function(knex) {
           body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
         },
         {
-          author_id: '6',
+          author_id: '3',
           category: 'zzzzzz',
           title: 'Honest title',
           summary: 'Stunning',

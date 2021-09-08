@@ -2,8 +2,8 @@
 exports.up = function(knex) {
   return knex.schema.createTable('authors', function(table){
     table.increments('id')
-    table.text('name').unique().notNullable()
-    table.text('picture')
+    table.string('name').unique().notNullable()
+    table.string('picture')
   })
 };
 

@@ -3,13 +3,9 @@ exports.up = function(knex) {
 
   return knex.schema.createTable('users', function(table){
     table.increments('id')
-    table.text('username').unique().notNullable()
-    table.text('password').notNullable()
+    table.string('username').unique().notNullable()
+    table.string('password').notNullable()
     table.boolean('admin').defaultTo(false)
-    table.timestamp('created_at').defaultTo(knex.fn.now())
-    // Essa função now é nativa do knex, e pega o timestamp.
-    table.timestamp('updated_at').defaultTo(knex.fn.now())
-
   })
   
 };
