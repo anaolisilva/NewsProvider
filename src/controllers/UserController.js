@@ -3,8 +3,7 @@ const User = require('../models/User')
 
 module.exports = {
   async index(req, res) {
-    const results = await knex('users');
-    // Aguarda retorno da função knex
+    const results = await User.query();
 
     return res.json(results);
   },
@@ -26,11 +25,9 @@ module.exports = {
     
     try {
 
-      let newUser = req.body;
+      const newUser = req.body;
 
       await User.query().insert(newUser);
-
-      // await knex('users').insert({ username, password, admin });
 
       return res.status(201).send();
 
