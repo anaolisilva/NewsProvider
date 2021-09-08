@@ -9,12 +9,15 @@ app
 .get('/users', UserController.index)
 .get('/users/:id', UserController.getById)
 .post('/users', UserController.singUp)
-.put('/users/:id', UserController.update)
-.delete('/users/:id', UserController.delete)
+.put('/users/:id', UserController.updateUser)
+.delete('/users/:id', UserController.deleteUser)
 
 // Routes articles
 .get('/articles', ArticleController.index)
-.get('/articles/:id', ArticleController.getById)
+.post('/admin/articles', ArticleController.createArticle)
+.put('/admin/articles', ArticleController.updateArtcile)
+.delete('/admin/articles', ArticleController.deleteArticle)
+
 
 
 module.exports = app

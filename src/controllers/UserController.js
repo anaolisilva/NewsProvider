@@ -21,7 +21,7 @@ module.exports = {
     }
   },
 
-  async singUp(req, res, next) {
+  async singUp (req, res, next) {
     
     try {
 
@@ -39,7 +39,7 @@ module.exports = {
 
   },
 
-  async update (req, res, next) {
+  async updateUser (req, res, next) {
     try {
       let updateUser = req.body;
 
@@ -57,7 +57,7 @@ module.exports = {
 
   },
 
-  async delete (req, res, next) {
+  async deleteUser (req, res, next) {
     try {
       const { id } = req.params;
 

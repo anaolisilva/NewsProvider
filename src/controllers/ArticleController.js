@@ -2,23 +2,65 @@ const knex = require("../database");
 const Article = require('../models/Article');
 
 module.exports = {
-  async index(req, res) {
-    const results = await knex('articles').join('authors', 'articles.author_id', '=', 'authors.id').select('articles.*', 'authors.name', 'authors.picture');
-
-    return res.json(results);
-  },
-
-  //Dá status ok mas não retorna nada
-  async getById(req, res, next) {
+  async index(req, res, next) {
     try {
-      const { id } = req.params;
-      const result = await Article.query().findById(id).join('authors', 'articles.author_id', 'authors.id').select('articles.*', 'authors.name', 'authors.picture');
-      return res.json(result); 
 
-    } catch(error) {
+      const results = await Article.query().withGraphFetched('author');
+  
+      return res.json(results);
 
+    }catch(error){
       next(error);
     }
   },
+
+  async createArticle(req, res, next){
+    try{
+      const newArticle = req.body;
+
+      await Article.query().insert(newArticle);
+
+      return res.status(201).send();
+
+    }catch(error){
+      next(error);
+    }
+  },
+
+
+  async updateArtcile(req, res, next){
+    try{
+
+      let updateArticle = req.body;
+
+      const { id } = req.params
+
+      await Article.query().findById(id).patch(updateArticle);
+
+      updateArticle = await Article.query().findById(id);
+
+      return res.send(updateArticle);
+      
+    }catch(error){
+      next(error);
+    }
+  },
+
+  async deleteArticle(req, res, next) {
+    try{
+
+      const {id} = req.params
+
+      await Article.query().deleteById(id);
+
+      return res.send();
+
+
+    }catch(error){
+      next(error);
+    }
+  }
+
+  
 
 }
