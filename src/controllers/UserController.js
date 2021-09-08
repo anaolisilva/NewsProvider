@@ -1,4 +1,3 @@
-const knex = require("../database");
 const User = require('../models/User')
 
 module.exports = {
