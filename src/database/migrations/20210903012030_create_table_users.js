@@ -12,4 +12,3 @@ exports.up = function(knex) {
 
 exports.down = knex => knex.schema.dropTable('users');
 
-// Função em arrow function, pra deixar o código mais limpo.

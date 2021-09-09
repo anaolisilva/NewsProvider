@@ -1,14 +1,17 @@
 const express = require('express');
 const app = express.Router();
-const UserController = require('./controllers/UserController')
-const ArticleController = require('./controllers/ArticleController')
-const AuthorController = require('./controllers/AuthorController')
+const UserController = require('./controllers/UserController');
+const ArticleController = require('./controllers/ArticleController');
+const AuthorController = require('./controllers/AuthorController');
+const AuthenticationService = require('./services/auth')
+
+app
 
 // Routes users
-app
 .get('/users', UserController.index)
 .get('/users/:id', UserController.getById)
-.post('/users', UserController.singUp)
+.post('/sign-up', UserController.singUp)
+.post('/login', AuthenticationService.login)
 .put('/users/:id', UserController.updateUser)
 .delete('/users/:id', UserController.deleteUser)
 
@@ -27,4 +30,4 @@ app
 
 
 
-module.exports = app
+module.exports = app;
