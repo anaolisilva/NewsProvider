@@ -13,7 +13,9 @@ module.exports = {
     const validPassword = await bcrypt.compare(password, userLoggedIn.password);
   
     if (!userLoggedIn.username || !validPassword) {
+      
       return res.status(403).send('Wrong username or password.');
+
     } else {
 
       const token = jwt.sign({id: userLoggedIn.id, admin: userLoggedIn.admin}, 'verySecret');
@@ -41,7 +43,7 @@ module.exports = {
         // Also stores payload information
   
         next(); 
-        // next allows the function to go to the next middlewear when called.
+       
       }
 
     }catch (error) {

@@ -37,9 +37,7 @@ module.exports = {
   async getArticleById(req, res, next) {
     
     const { id } = req.params
-    // Fazer conferência do token dentro dessa função, talvez?
-    console.log(req.user)
-
+    
     if (req.user) {
 
       results = await Article.query().findById(id).withGraphFetched('author').select('articles.category', 'articles.title', 'articles.summary', 'articles.first_paragraph', 'articles.body');

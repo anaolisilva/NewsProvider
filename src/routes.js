@@ -13,10 +13,11 @@ app
 .post('/login', AuthenticationService.login)
 
   //Checking and maintenence
+  //Decided to give delete and update privileged to Admin only.
 .get('/users', UserController.index)
 .get('/users/:id', UserController.getById)
-.put('/users/:id', UserController.updateUser)
-.delete('/users/:id', UserController.deleteUser)
+.put('/users/:id', AuthenticationService.authorizeAdmin, UserController.updateUser)
+.delete('/users/:id', AuthenticationService.authorizeAdmin, UserController.deleteUser)
 
 //Routes authors
 .get('/admin/authors', AuthenticationService.authorizeAdmin, AuthorController.index)
