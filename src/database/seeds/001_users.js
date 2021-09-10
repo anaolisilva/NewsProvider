@@ -1,13 +1,17 @@
+const bcrypt = require('bcryptjs');
 
-exports.seed = function(knex) {
+exports.seed = async function(knex) {
+
+  const salt = await bcrypt.genSalt(10);
+  const encryptedPassword = await bcrypt.hash('123456', salt)
   // Deletes ALL existing entries
-  return knex('users').del()
-    .then(function () {
+  await knex('users').del()
+    .then(() => {
       // Inserts seed entries
       return knex('users').insert([
-        {username: 'admin', password: '123456', admin: 'true'},
-        {username: 'ana', password: '123456', admin: 'true'},
-        {username: 'someone', password: '123456'},
+        {username: 'admin', password: encryptedPassword, admin: 'true'},
+        {username: 'ana', password: encryptedPassword, admin: 'true'},
+        {username: 'someone', password: encryptedPassword},
       ]);
     });
   
