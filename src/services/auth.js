@@ -18,7 +18,7 @@ module.exports = {
 
       const token = jwt.sign({id: userLoggedIn.id, admin: userLoggedIn.admin}, 'verySecret');
 
-      return res.header('Authentication', token).send({token: token});
+      return res.header('Authorization', token).send({token: token});
     }
   
   },
@@ -26,17 +26,23 @@ module.exports = {
   // This function is going to be a middlewear function, and is going to be passed on for access on protected routes.
 
   authorizeLogin (req, res, next) {
-    const token = req.header('Authentication');
-    if(!token) {
-      return res.status(401).send('Invalid token.')
-    }
+    const token = req.header('Authorization');
+   
     try {
-      const verified = jwt.verify(token, 'verySecret');
-      req.user = verified;
-      // Also stores payload information
 
-      next(); 
-      // next allows the function to go to the next middlewear when called.
+      if(!token){
+
+        next();
+
+      } else {
+
+        const verified = jwt.verify(token, 'verySecret');
+        req.user = verified;
+        // Also stores payload information
+  
+        next(); 
+        // next allows the function to go to the next middlewear when called.
+      }
 
     }catch (error) {
       next(error);
@@ -44,7 +50,7 @@ module.exports = {
   },
 
   authorizeAdmin (req, res, next) {
-    const token = req.header('Authentication');
+    const token = req.header('Authorization');
     if(!token) {
       return res.status(401).send('Invalid token.');
     }

@@ -8,11 +8,11 @@ const AuthenticationService = require('./services/auth')
 app
 
 // Routes users
-// Auth
+  // Auth
 .post('/sign-up', UserController.singUp)
 .post('/login', AuthenticationService.login)
 
-//Checking and maintenence
+  //Checking and maintenence
 .get('/users', UserController.index)
 .get('/users/:id', UserController.getById)
 .put('/users/:id', UserController.updateUser)
@@ -26,11 +26,9 @@ app
 .delete('/admin/authors/:id', AuthenticationService.authorizeAdmin, AuthorController.deleteAuthor)
 
 // Routes articles
-.get('/articles', ArticleController.index)
+.get('/articles/:id', AuthenticationService.authorizeLogin, ArticleController.getArticleById)
 .post('/admin/articles', AuthenticationService.authorizeAdmin, ArticleController.createArticle)
 .put('/admin/articles', AuthenticationService.authorizeAdmin, ArticleController.updateArticle)
 .delete('/admin/articles', AuthenticationService.authorizeAdmin, ArticleController.deleteArticle)
-
-
 
 module.exports = app;
