@@ -29,4 +29,6 @@ If you need, for whatever reason, to kill the tables from the database: <br>
   <li> List article endpoint /api/articles?category=:slug</li>
 </ul>
 
-*I will add a Postman files with examples very soon!*
+There's a Postman collection with the main routes on the root directory. I will note that update and delete methods also exist for the Authors and Articles on the same routes ("/api/admin/authors/:id" and "/api/admin/articles/:id") even though it's not stated in the file.
+
+<strong>Thank you so much for your time!</strong>
